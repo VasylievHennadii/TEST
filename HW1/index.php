@@ -1,23 +1,47 @@
-<?php error_reporting(-1);
+<?php 
+declare(strict_types=1);
+
+error_reporting(-1);
 
 require_once 'functions.php';
 
 
 echo isPrime(11);
 echo '<br>';
+echo isPositive(11.5);
+echo '<br>';
+echo isNegative(-11.456);
+echo '<br>';
+echo isZero(0);
+echo '<br>';
 
-debug(fibonacci(13));
+debug(getFibonacci(13));
 echo '<br>';
 
 debug(recursFibo(13));
-
-
-
-
-$array = [[5,5],1,2,3,[1,2,3,[1,[11,11,[12,12],11]]],8,13,[12,9]];
-$result = processArray($array);
 echo '<br><br><br><br>';
-echo tree($array);
+
+$arrForSort = [1, 25, -3, 0, 17, -5, 30, -3, 8, 156, -324, 88, 111, 1, 0];
+echo calculatePercentages($arrForSort, 'isPositive') . '% - Positive <br>';
+echo calculatePercentages($arrForSort, 'isPrime') . '% - Prime <br>';
+echo calculatePercentages($arrForSort, 'isNegative') . '% - Negative <br>';
+echo calculatePercentages($arrForSort, 'isZero') . '% - Zero <br>';
+debug(sortAscend($arrForSort));
+debug(sortDescend($arrForSort));
+echo '<br>';
+echo exponentiation(5, -3);
+echo '<br>';
+echo recursExponentiation(5, -3);
+
+echo '<br><br><br><br>';
+
+
+$array = [[5, 5], 1, 2, 3, [1, 2, 3, [1, [11, 11, [12, 12], 11]]], 8, 13, [12, 9]];
+$result = arrayTreeOutput($array);
+echo '<br><br><br><br>';
+echo getTree($array);
+echo '<br><br><br><br>';
+debug(getTree($array));
 echo '<br><br><br><br>';
 $tree = [
     "level 1" => ["level 1.1", "level 1.2"],
@@ -27,7 +51,7 @@ $tree = [
     "level 4" => ["level 4.1", "level 4.2", "level 4.3", "level 4.4"],
     "level 5"
 ];
-echo tree($tree);
+echo getTree($tree);
 
 
 
