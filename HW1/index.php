@@ -52,6 +52,12 @@ $trans = array(
 echo '<br>';
 debug($trans);
 debug(transposeMatrix($trans));
+$sumArray = array(
+    array(1, 2, 3, 1),
+    array(3, 5, 7, 9),
+    array(5, 9, 8, 12)
+);
+debug(sumMatrix($trans, $sumArray));
 
 
 echo '<br><br><br><br>';

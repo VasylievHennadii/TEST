@@ -234,6 +234,24 @@ function transposeMatrix(array $array): array{
     return $result;    
 }
 
+/**
+ * функция сложения двух матриц
+ * @param array $array
+ * @param array $arr
+ * @return array
+ */
+function sumMatrix(array $array, array $arr): array{
+    $result = [];
+    if(count($array) == count($arr) && count($array[0]) == count($arr[0])){
+        for($i = 0; $i < count($array); $i++){
+            for($j = 0; $j < count($array[0]); $j++){
+                $result[$i][$j] = $array[$i][$j] + $arr[$i][$j];
+            }
+        }
+        return $result;
+    }
+    return [];
+}
 
 /*----------------Рекурсии---------------------------------------------------
     - Все задачи на циклы которые можно реализовать с помощью рекурсии,
