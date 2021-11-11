@@ -191,11 +191,11 @@ function recursFibo(int $num): int {
 function recursExponentiation(float $base, int $exponent): float {
     if ($exponent == 0) {
         return 1;
-      }
-      if ($exponent < 0) {
+    }
+    if ($exponent < 0) {
         return recursExponentiation(1/$base, -$exponent);
-      }
-      return $base * recursExponentiation($base, $exponent-1);
+    }
+    return $base * recursExponentiation($base, $exponent-1);
 }
 
 /**
