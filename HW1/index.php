@@ -32,6 +32,27 @@ echo '<br>';
 echo exponentiation(5, -3);
 echo '<br>';
 echo recursExponentiation(5, -3);
+echo '<br>';
+debug(decimalToBinary(75));
+echo '<br>';
+debug(bindec('11110101'));
+echo '<br>';
+debug(binaryToDecimal('11110101'));
+echo '<br>';
+echo isValidIP('250.03.156.123');
+echo '<br>';
+echo isValidIpPregMatch('250.03.156.123');
+
+
+$trans = array(
+    array(1, 2, 9, 1),
+    array(3, 4, 9, 1),
+    array(5, 6, 9, 1)
+);
+echo '<br>';
+debug($trans);
+debug(transposeMatrix($trans));
+
 
 echo '<br><br><br><br>';
 

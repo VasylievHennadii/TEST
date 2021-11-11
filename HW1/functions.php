@@ -5,6 +5,33 @@ declare(strict_types=1);
 системы счисления и преобразовывает в двоичную. 
 Написать функцию которая выполняет преобразование наоборот.*/
 
+/**
+ * функция преобразования числа из двоичной в десятичную СС
+ * @param string $str
+ * @return float
+ */
+function binaryToDecimal(string $str): float{
+    $len = strlen($str);
+    $result = 0;
+    for($i = 0; $i < $len; $i++){
+        $result += $str[$i] * exponentiation(2, $len-$i-1);
+    }
+    return $result;
+}
+
+/**
+ * функция преобразования числа из десятичной в двоичную СС
+ * @param int $num
+ * @return string
+ */
+function decimalToBinary(int $num): string{    
+    $result = '';
+    while($num != 0){
+        $result = ($num % 2) . $result;        
+        $num = intdiv($num, 2);        
+    }
+    return $result;
+}
 
 
 /*Написать функцию которая находит первые N чисел фибоначчи*/
@@ -49,6 +76,35 @@ function exponentiation(float $base, int $exponent): float {
 
 /*Написать функцию которая вычисляет входит ли IP-адрес в диапазон указанных
 IP-адресов. Вычислить для версии ipv4.*/
+
+/**
+ * функция проверки валидности IP-адреса для версии ipv4
+ * @param string $str
+ * @return bool
+ */
+function isValidIP(string $str): bool{
+    $array = explode('.', $str);
+    if(count($array) == 4){
+        foreach($array as $n){
+            if($n > 255 || $n < 0 || !ctype_digit($n)){
+                return false;
+            }
+        }
+    } else {
+      return false;
+    }
+    return true;
+}
+
+/**
+ * функция проверки валидности IP-адреса для версии ipv4 с помощью регулярного выражения
+ * @param string $str
+ * @return bool
+ */
+function isValidIpPregMatch(string $str): bool{
+    $reg = '/^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/';    
+    return (bool) preg_match($reg, $str);
+}
 
 
 /*Для одномерного массива
@@ -160,6 +216,23 @@ function sortDescend($array){
     - Удалить те строки, в которых сумма элементов положительна и 
         присутствует хотя бы один нулевой элемент. 
     - Аналогично для столбцов.*/
+
+/**
+ * функция транспонирования матрицы
+ * @param mixed $array
+ * @return array
+ */
+function transposeMatrix(array $array): array{
+    $result = [];
+    $line = count($array);
+    $column = count($array[0]);
+    for($i = 0; $i < $line; $i++){
+        for($j = 0; $j < $column; $j++){
+            $result[$j][$i] = $array[$i][$j];
+        }
+    }
+    return $result;    
+}
 
 
 /*----------------Рекурсии---------------------------------------------------
