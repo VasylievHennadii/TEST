@@ -193,7 +193,7 @@ function sortAscend(array $array): array {
  * @param array $array
  * @return array
  */
-function sortDescend($array){
+function sortDescend(array $array): array{
     $length = count($array);
     for($i = 0; $i < $length-1; $i++){
         for($j = 0; $j < $length-1-$i; $j++){            
