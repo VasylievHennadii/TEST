@@ -49,16 +49,32 @@ $trans = array(
     array(3, 4, 9, 1),
     array(5, 6, 9, 1)
 );
-echo '<br>';
+echo '<br><br><br><br>';
+echo '$trans';
 debug($trans);
+echo 'transposeMatrix($trans)';
 debug(transposeMatrix($trans));
 $sumArray = array(
     array(1, 2, 3, 1),
     array(3, 5, 7, 9),
     array(5, 9, 8, 12)
 );
+echo 'sumMatrix($trans, $sumArray)';
 debug(sumMatrix($trans, $sumArray));
-
+echo '<br>';
+$testMatrix = array(
+    array(1, 2, 3, 1),
+    array(3, 5, 0, -6),
+    array(5, 9, -8, 12)
+);
+echo '$testMatrix';
+debug($testMatrix);
+echo '<br>';
+echo 'delRowMatrixByCond($testMatrix)';
+debug(delRowMatrixByCond($testMatrix));
+echo '<br>';
+echo 'delColMatrixByCond($testMatrix)';
+debug(delColMatrixByCond($testMatrix));
 
 echo '<br><br><br><br>';
 

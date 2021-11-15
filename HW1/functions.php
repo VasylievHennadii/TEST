@@ -218,15 +218,99 @@ function sortDescend(array $array): array{
     - Аналогично для столбцов.*/
 
 /**
+ * функция удаляет строки матрицы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент.
+ * @param array $array 
+ * @return array
+ */
+function delRowMatrixByCond(array $array): array {
+    $result = [];
+    $sum = $k = $m = 0;
+    $row = count($array);
+    $column = count($array[0]);
+    for($i = 0; $i < $row; $i++){
+        $sum = 0;
+        for($j = 0; $j < $column; $j++){
+            $sum += $array[$i][$j];            
+            if($array[$i][$j] == 0){
+                $k = $i;
+                $m = $j;
+            }
+        }
+        if($sum > 0 && $array[$k][$m] == 0){            
+            $result = arrayRowRemove($array, $k);
+        }
+    }
+    return $result;
+}
+
+/**
+ * функция удаляет столбцы матрицы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент.
+ * @param array $array
+ * @return array
+ */
+function delColMatrixByCond(array $array): array {
+    $result = [];
+    $sum = $k = $m = 0;
+    $row = count($array);
+    $column = count($array[0]);
+    for($j = 0; $j < $column; $j++){
+        $sum = 0;
+        for($i = 0; $i < $row; $i++){
+            $sum += $array[$i][$j];            
+            if($array[$i][$j] == 0){
+                $k = $i;
+                $m = $j;
+            }
+        }
+        if($sum > 0 && $array[$k][$m] == 0){            
+            $result = arrayColRemove($array, $m);
+        }
+    }
+    return $result;
+}
+
+/**
+ * функция удаления строки матрицы
+ * @param array $array
+ * @param mixed $row_index
+ * @return array
+ */
+function arrayRowRemove(array $array, $row_index): array {
+    if (is_array($array) && array_key_exists($row_index, $array)){
+        unset($array[$row_index]);
+        $array = array_values($array);
+    }
+    return $array;
+}
+
+/**
+ * функция удаления столбца матрицы
+ * @param array $array
+ * @param mixed $col_index
+ * @return array
+ */
+function arrayColRemove(array $array, $col_index): array {
+    if (is_array($array) && count($array)){
+        foreach ($array as $row_index => $row){
+            if (array_key_exists($col_index, $row)){
+                unset($array[$row_index][$col_index]);
+                $array[$row_index] = array_values($array[$row_index]);
+            }
+        }
+    }
+    return $array;
+}
+
+/**
  * функция транспонирования матрицы
  * @param mixed $array
  * @return array
  */
 function transposeMatrix(array $array): array{
     $result = [];
-    $line = count($array);
+    $row = count($array);
     $column = count($array[0]);
-    for($i = 0; $i < $line; $i++){
+    for($i = 0; $i < $row; $i++){
         for($j = 0; $j < $column; $j++){
             $result[$j][$i] = $array[$i][$j];
         }
