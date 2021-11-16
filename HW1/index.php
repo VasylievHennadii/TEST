@@ -21,6 +21,8 @@ echo '<br>';
 debug(recursFibo(13));
 echo '<br><br><br><br>';
 
+$zeroArr = [[1, 3], [1], [], 5, [4]];
+
 $arrForSort = [1, 25, -3, 0, 17, -5, 30, -3, 8, 156, -324, 88, 111, 1, 0];
 echo calculatePercentages($arrForSort, 'isPositive') . '% - Positive <br>';
 echo calculatePercentages($arrForSort, 'isPrime') . '% - Prime <br>';
@@ -60,7 +62,7 @@ $sumArray = array(
     array(5, 9, 8, 12)
 );
 echo 'sumMatrix($trans, $sumArray)';
-debug(sumMatrix($trans, $sumArray));
+debug(sumMatrix($zeroArr, $sumArray));
 echo '<br>';
 $testMatrix = array(
     array(1, 2, 3, 1),
