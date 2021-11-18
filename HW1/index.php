@@ -18,7 +18,7 @@ echo '<br>';
 debug(getFibonacci(13));
 echo '<br>';
 
-debug(recursFibo(13));
+debug(recursFibonacci(13));
 echo '<br><br><br><br>';
 
 $zeroArr = [[1, 3], [1], [], 5, [4]];

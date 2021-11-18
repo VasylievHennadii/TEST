@@ -35,7 +35,10 @@ function decimalToBinary(int $num): string {
  * @param int $num
  * @return array
  */
-function getFibonacci(int $num): array {   
+function getFibonacci(int $num): array {
+    if($num === 0 || $num === 1){
+        return [];
+    }   
     $array[0] = 0;
     $array[1] = 1;
     for($i = 2; $i < $num; $i++){
@@ -328,14 +331,14 @@ function sumMatrix(array $array, array $arr): array{
  * @param int $num
  * @return int
  */
-function recursFibo(int $num): int {
+function recursFibonacci(int $num): int {
     if($num === 0){
         return 0;
     } 
     if($num === 1 || $num === 2){
         return 1;
     }
-    return recursFibo($num - 1) + recursFibo($num - 2);   
+    return recursFibonacci($num - 1) + recursFibonacci($num - 2);   
      
 }
 
