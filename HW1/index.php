@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 error_reporting(-1);
 
+ini_set("display_errors", '0');
+
 require_once 'functions.php';
 
 
@@ -18,7 +20,7 @@ echo '<br>';
 debug(getFibonacci(13));
 echo '<br>';
 
-debug(recursFibonacci(13));
+debug(numberFibonacci(13));
 echo '<br><br><br><br>';
 
 $zeroArr = [[1, 3], [1], [], 5, [4]];
@@ -28,8 +30,8 @@ echo calculatePercentages($arrForSort, 'isPositive') . '% - Positive <br>';
 echo calculatePercentages($arrForSort, 'isPrime') . '% - Prime <br>';
 echo calculatePercentages($arrForSort, 'isNegative') . '% - Negative <br>';
 echo calculatePercentages($arrForSort, 'isZero') . '% - Zero <br>';
-debug(sortAscend($arrForSort));
-debug(sortDescend($arrForSort));
+debug(sortArray($arrForSort, 'sortAscending', true));
+debug(sortArray($arrForSort, 'sortAscending', false));
 echo '<br>';
 echo exponentiation(5, -3);
 echo '<br>';
@@ -51,6 +53,7 @@ $trans = array(
     array(3, 4, 9, 1),
     array(5, 6, 9, 1)
 );
+$transs = '5';
 echo '<br><br><br><br>';
 echo '$trans';
 debug($trans);
@@ -62,7 +65,7 @@ $sumArray = array(
     array(5, 9, 8, 12)
 );
 echo 'sumMatrix($trans, $sumArray)';
-debug(sumMatrix($zeroArr, $sumArray));
+debug(sumMatrix($trans, $sumArray));
 echo '<br>';
 $testMatrix = array(
     array(1, 2, 3, 1),

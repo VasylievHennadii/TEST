@@ -8,12 +8,20 @@ declare(strict_types=1);
  * @return float
  */
 function binaryToDecimal(string $str): float {
-    $len = strlen($str);
-    $result = 0;
-    for($i = 0; $i < $len; $i++){
-        $result += $str[$i] * exponentiation(2, $len-$i-1);
-    }
+    try{
+        if(!is_string($str)){
+            throw new Exception("Ошибка: входной параметр {$str} не является строкой");
+        }
+        $len = strlen($str);
+        $result = 0;
+        for($i = 0; $i < $len; $i++){
+            $result += $str[$i] * exponentiation(2, $len-$i-1);
+        }
     return $result;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
@@ -21,30 +29,65 @@ function binaryToDecimal(string $str): float {
  * @param int $num
  * @return string
  */
-function decimalToBinary(int $num): string {    
-    $result = '';
-    while($num !== 0){
-        $result = ($num % 2) . $result;        
-        $num = intdiv($num, 2);        
-    }
-    return $result;
+function decimalToBinary(int $num): string {  
+    try{
+        if(!is_int($num)){
+            throw new Exception("Входной параметр {$num} не является целым десятичным числом");
+        }
+        $result = '';
+        while($num !== 0){
+            $result = ($num % 2) . $result;        
+            $num = intdiv($num, 2);        
+        }
+        return $result;
+    } catch (Exception $e){
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
- * функция находит первые N чисел Фибоначчи
+ * функция получает первые N чисел Фибоначчи
  * @param int $num
  * @return array
  */
-function getFibonacci(int $num): array {
-    if($num === 0 || $num === 1){
-        return [];
-    }   
-    $array[0] = 0;
-    $array[1] = 1;
-    for($i = 2; $i < $num; $i++){
-        $array[$i] = $array[$i-2] + $array[$i-1];
-    }
-    return $array;
+function getFibonacci(int $num): array {    
+    try{
+        $array = [];
+        if($num <= 0 || !is_int($num)){            
+            throw new Exception("Ошибка: элемента ряда Фибоначчи с таким порядковым номером = {$num}  не существует");
+        }    
+        for($i = 1; $i <= $num; $i++){
+            array_push($array, numberFibonacci($i));
+        }
+        return $array;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    }    
+}
+
+/**
+ * рекурсивная функция находит N-й элемент ряда Фибоначчи
+ * @param int $num
+ * @return int
+ */
+function numberFibonacci(int $num): int {
+    try{
+        if(!is_int($num)){
+            throw new Exception("Входной параметр {$num} не является целым десятичным числом");
+        }
+        if($num === 0 || $num < 0){
+            return 0;
+        } 
+        if($num === 1 || $num === 2){
+            return 1;
+        }
+        return numberFibonacci($num - 1) + numberFibonacci($num - 2);
+    } catch (Exception $e){
+        echo $e->getMessage();
+        die();
+    }         
 }
 
 /**
@@ -54,17 +97,25 @@ function getFibonacci(int $num): array {
  * @return float
  */
 function exponentiation(float $base, int $exponent): float {
-    $result = 1;    
-    if($exponent === 0){
-        return 1;
-    }
-    for($i = 0; $i < abs($exponent); $i++){        
-        $result *= $base;
-    }
-    if($exponent < 0){
-        return 1 / $result;
-    }
-    return $result;    
+    try{
+        if(!is_int($exponent) && !is_float($base)){
+            throw new Exception("Входной параметр {$base} не float или {$exponent} не integer ");
+        }
+        $result = 1;    
+        if($exponent === 0){
+            return 1;
+        }
+        for($i = 0; $i < abs($exponent); $i++){        
+            $result *= $base;
+        }
+        if($exponent < 0){
+            return 1 / $result;
+        }
+        return $result;
+    } catch (Exception $e){
+        echo $e->getMessage();
+        die();
+    }        
 }
 
 /**
@@ -73,17 +124,25 @@ function exponentiation(float $base, int $exponent): float {
  * @return bool
  */
 function isValidIP(string $str): bool {
-    $array = explode('.', $str);
-    if(count($array) === 4){
-        foreach($array as $value){
-            if($value > 255 || $value < 0 || !ctype_digit($value)){
-                return false;
-            }
+    try{
+        if(!is_string($str)){
+            throw new Exception("Ошибка: входной параметр {$str} не является строкой");
         }
-    } else {
-      return false;
-    }
-    return true;
+        $array = explode('.', $str);
+        if(count($array) === 4){
+            foreach($array as $value){
+                if($value > 255 || $value < 0 || !ctype_digit($value)){
+                    return false;
+                }
+            }
+        } else {
+        return false;
+        }
+        return true;
+    } catch (Exception $e){
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
@@ -103,13 +162,21 @@ function isValidIpPregMatch(string $str): bool {
  * @return float
  */
 function calculatePercentages(array $array, string $callback): float {
-    $number = 0;   
-    foreach($array as $value){
-        if($callback($value)){            
-            $number++;
+    try{
+        if(!is_array($array)){
+            throw new Exception("Ошибка: входной параметр {$array} не является массивом");
         }
-    } 
-    return $number / count($array) * 100;
+        $number = 0;   
+        foreach($array as $value){
+            if($callback($value)){            
+                $number++;
+            }
+        } 
+        return $number / count($array) * 100;
+    } catch (Exception $e){
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
@@ -155,41 +222,44 @@ function isZero(int $num): bool {
 }
 
 /**
- * сортировка массива по возрастанию
+ * сортировка массива по возрастанию/убыванию $flag = true/false
  * @param array $array
+ * @param string $callback
+ * @param bool $flag
  * @return array
  */
-function sortAscend(array $array): array {
-    $length = count($array);
-    for($i = 0; $i < $length-1; $i++){
-        for($j = 0; $j < $length-1-$i; $j++){            
-            if($array[$j+1] < $array[$j]){
-                $temp = $array[$j+1];
-                $array[$j+1] = $array[$j];
-                $array[$j] = $temp;
+function sortArray(array $array, string $callback, bool $flag = true): array {
+    try{
+        if(!is_array($array)){
+            throw new Exception("Ошибка: входной параметр {$array} не является массивом");
+        }
+        $length = count($array);
+        for($i = 0; $i < $length-1; $i++){
+            for($j = 0; $j < $length-1-$i; $j++){ 
+                $array = $callback($array, $j);
             }
         }
+        return ($flag === true) ? $array : array_reverse($array);
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
     }
-    return $array;
+        
 }
 
 /**
- * сортировка массива по убыванию
+ * callback функция для перестановки элементов массива по возрастанию
  * @param array $array
+ * @param int $num
  * @return array
  */
-function sortDescend(array $array): array {
-    $length = count($array);
-    for($i = 0; $i < $length-1; $i++){
-        for($j = 0; $j < $length-1-$i; $j++){            
-            if($array[$j+1] > $array[$j]){
-                $temp = $array[$j+1];
-                $array[$j+1] = $array[$j];
-                $array[$j] = $temp;
-            }
-        }
+function sortAscending(array $array, int $num): array{
+    if($array[$num + 1] < $array[$num]){
+        $temp = $array[$num + 1];
+        $array[$num + 1] = $array[$num];
+        $array[$num] = $temp;
     }
-    return $array;
+    return $array;    
 }
 
 /**
@@ -198,14 +268,18 @@ function sortDescend(array $array): array {
  * @return array
  */
 function delRowMatrixByCond(array $array): array {
-    $result = [];
-    if(is_array($array) && count($array) && is_array($array[0])){
-        $sum = $rowIndex = $colIndex = 0;
+    try{
+        $result = [];
+        if(!is_array($array) || !is_array($array[0])){
+            throw new Exception("Ошибка: входной параметр не является массивом/матрицей");
+        }
+        $rowIndex = 0;
+        $colIndex = 0;
         $row = count($array);
         $column = count($array[0]);
         for($i = 0; $i < $row; $i++){
             if(!is_array($array[$i]) || (count($array[$i]) !== count($array[0]))){
-                return[];
+                throw new Exception("Ошибка: входной параметр не является матрицей");
             } 
             $sum = 0;
             for($j = 0; $j < $column; $j++){
@@ -218,9 +292,13 @@ function delRowMatrixByCond(array $array): array {
             if($sum > 0 && $array[$rowIndex][$colIndex] === 0){            
                 $result = arrayRowRemove($array, $rowIndex);
             }
-        }
+        }       
+        return $result;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
     }
-    return $result;
+    
 }
 
 /**
@@ -229,16 +307,20 @@ function delRowMatrixByCond(array $array): array {
  * @return array
  */
 function delColMatrixByCond(array $array): array {
-    $result = [];
-    if(is_array($array) && count($array) && is_array($array[0])){
-        $sum = $rowIndex = $colIndex = 0;
+    try{
+        $result = [];
+        if(!is_array($array) || !is_array($array[0])){
+            throw new Exception("Ошибка: входной параметр не является массивом/матрицей");
+        }           
+        $rowIndex = 0;
+        $colIndex = 0;
         $row = count($array);
         $column = count($array[0]);
         for($j = 0; $j < $column; $j++){            
             $sum = 0;
             for($i = 0; $i < $row; $i++){
                 if(!is_array($array[$i]) || (count($array[$i]) !== count($array[0]))){
-                    return[];
+                    throw new Exception("Ошибка: входной параметр не является матрицей");
                 } 
                 $sum += $array[$i][$j];            
                 if($array[$i][$j] === 0){
@@ -249,9 +331,12 @@ function delColMatrixByCond(array $array): array {
             if($sum > 0 && $array[$rowIndex][$colIndex] === 0){            
                 $result = arrayColRemove($array, $colIndex);
             }
-        }
-    }
-    return $result;
+        }        
+        return $result;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
@@ -291,20 +376,25 @@ function arrayColRemove(array $array, $colIndex): array {
  * @param mixed $array
  * @return array
  */
-function transposeMatrix(array $array): array{
-    $result = [];    
-    if(!is_array($array)){
-        return [];
-    }
-    foreach($array as $key => $subarray){
-        if(!is_array($subarray)){
-            return $array;
+function transposeMatrix($array): array{
+    try{
+        $result = [];    
+        if(!is_array($array)){
+            throw new Exception("Ошибка: входной параметр не является массивом");
         }
-        foreach($subarray as $subkey => $value){
-            $result[$subkey][$key] = $value;
-        }
-    }    
-    return $result;     
+        foreach($array as $key => $subarray){
+            if(!is_array($subarray)){
+                return $array;
+            }
+            foreach($subarray as $subkey => $value){
+                $result[$subkey][$key] = $value;
+            }
+        }    
+        return $result;
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    } 
 }
 
 /**
@@ -314,32 +404,24 @@ function transposeMatrix(array $array): array{
  * @return array
  */
 function sumMatrix(array $array, array $arr): array{
-    $result = [];
-    if(count($array) === count($arr) && count($array[0]) === count($arr[0])){
+    try{
+        if(!is_array($arr) || !is_array($array)){
+            throw new Exception("Ошибка: входной параметр не является массивом");
+        }        
+        if(count($array) !== count($arr) && count($array[0]) !== count($arr[0])){
+            throw new Exception("Ошибка: размеры матриц не совпадают");
+        }  
+        $result = [];      
         for($i = 0; $i < count($array); $i++){
             for($j = 0; $j < count($array[0]); $j++){
                 $result[$i][$j] = $array[$i][$j] + $arr[$i][$j];
             }
         }
         return $result;
-    }
-    return [];
-}
-
-/**
- * рекурсивная функция находит N-й элемент ряда Фибоначчи
- * @param int $num
- * @return int
- */
-function recursFibonacci(int $num): int {
-    if($num === 0){
-        return 0;
-    } 
-    if($num === 1 || $num === 2){
-        return 1;
-    }
-    return recursFibonacci($num - 1) + recursFibonacci($num - 2);   
-     
+    } catch (Exception $e) {
+        echo $e->getMessage();
+        die();
+    }    
 }
 
 /**
