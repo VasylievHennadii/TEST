@@ -85,10 +85,7 @@ try{
 function numberFibonacci(int $num): int {
     if(!is_int($num) || $num <= 0){
         throw new Exception("Входной параметр {$num} не является целым десятичным числом");
-    }
-    if($num === 0 || $num < 0){
-        return 0;
-    } 
+    }    
     if($num === 1 || $num === 2){
         return 1;
     }
@@ -254,10 +251,10 @@ function sortArray($array, string $callback, bool $flag = true): array {
     $length = count($array);
     for($i = 0; $i < $length-1; $i++){
         for($j = 0; $j < $length-1-$i; $j++){ 
-            $array = $callback($array, $j);
+            $array = $callback($array, $j, $flag);
         }
-    }
-    return ($flag === true) ? $array : array_reverse($array);
+    }    
+    return $array;
 }
 
 try{
@@ -273,8 +270,8 @@ try{
  * @param int $num
  * @return array
  */
-function sortAscending(array $array, int $num): array{
-    if($array[$num + 1] < $array[$num]){
+function sortAscending(array $array, int $num, bool $flag): array{
+    if(($array[$num + 1] < $array[$num] && $flag) || ($array[$num + 1] > $array[$num] && !$flag)){
         $temp = $array[$num + 1];
         $array[$num + 1] = $array[$num];
         $array[$num] = $temp;
