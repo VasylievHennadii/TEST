@@ -6,7 +6,7 @@
  */
 function binaryToDecimal(string $str): float {
     if(!is_string($str)){
-        throw new Exception("Ошибка: входной параметр {$str} не является строкой");
+        throw new Exception("Error: input parameter {$str} is not a string");
     }
     $len = strlen($str);
     $result = 0;
@@ -14,7 +14,7 @@ function binaryToDecimal(string $str): float {
         if($str[$i] === '1' || $str[$i] === '0'){
             $result += $str[$i] * exponentiation(2, $len-$i-1);
         } else{
-            throw new Exception("Ошибка: входной параметр {$str} не является двоичным числом");
+            throw new Exception("Error: input parameter {$str} is not binary");
         }
         
     }
@@ -33,7 +33,7 @@ try{
  */
 function decimalToBinary(int $num): string {    
     if(!is_int($num)){
-        throw new Exception("Входной параметр {$num} не является целым десятичным числом");
+        throw new Exception("The input parameter {$num} is not an integer decimal number");
     }
     $result = '';
     while($num !== 0){
@@ -56,7 +56,7 @@ try{
 function getFibonacci(int $num): array {   
     $array = [];
     if($num <= 0 || !is_int($num)){            
-        throw new Exception("Ошибка: элемента ряда Фибоначчи с таким порядковым номером = {$num}  не существует");
+        throw new Exception("Error: an element of the Fibonacci series with this ordinal number = {$num} does not exist");
     }    
     for($i = 1; $i <= $num; $i++){
         array_push($array, numberFibonacci($i));
@@ -76,7 +76,7 @@ try{
  */
 function numberFibonacci(int $num): int {
     if(!is_int($num) || $num <= 0){
-        throw new Exception("Входной параметр {$num} не является целым десятичным числом");
+        throw new Exception("The input parameter {$num} is not an integer decimal number");
     }    
     if($num === 1 || $num === 2){
         return 1;
@@ -96,7 +96,7 @@ try{
  */
 function exponentiation(float $base, int $exponent): float {   
     if(!is_int($exponent) || !is_float($base)){
-        throw new Exception("Входной параметр {$base} не float или {$exponent} не integer ");
+        throw new Exception("The input parameter {$base} is not a float or {$exponent} is not an integer ");
     }
     $result = 1;    
     if($exponent === 0){
@@ -123,7 +123,7 @@ try{
  */
 function recursExponentiation(float $base, int $exponent): float {
     if(!is_int($exponent) || !is_float($base)){
-        throw new Exception("Входной параметр {$base} не float или {$exponent} не integer ");
+        throw new Exception("The input parameter {$base} is not a float or {$exponent} is not an integer");
     }
     if ($exponent === 0) {
         return 1;
@@ -146,7 +146,7 @@ try{
  */
 function isValidIP(string $str): bool {    
     if(!is_string($str)){
-        throw new Exception("Ошибка: входной параметр {$str} не является строкой");
+        throw new Exception("Error: input parameter {$str} is not a string");
     }
     $array = explode('.', $str);
     if(count($array) === 4){
@@ -182,7 +182,7 @@ function isValidIpPregMatch(string $str): bool {
  */
 function calculatePercentages($array, string $callback): float {    
     if(!is_array($array)){
-        throw new Exception("Ошибка: входной параметр {$array} не является массивом");
+        throw new Exception("Error: input parameter {$array} is not an array");
     }
     $number = 0;   
     foreach($array as $value){
@@ -240,7 +240,7 @@ function isZero(int $num): bool {
  */
 function sortArray(array $array, string $callback): array {    
     if(!is_array($array)){
-        throw new Exception("Ошибка: входной параметр {$array} не является массивом");
+        throw new Exception("Error: input parameter {$array} is not an array");
     }
     $length = count($array);
     for($i = 0; $i < $length-1; $i++){
@@ -287,7 +287,7 @@ $testMatrix = array(
 function delRowMatrixByCond($array): array {    
     $result = [];
     if(!is_array($array) || !is_array($array[0])){
-        throw new Exception("Ошибка: входной параметр не является массивом/матрицей");
+        throw new Exception("Error: input parameter is not an array/matrix");
     }
     $rowIndex = 0;
     $colIndex = 0;
@@ -295,7 +295,7 @@ function delRowMatrixByCond($array): array {
     $column = count($array[0]);
     for($i = 0; $i < $row; $i++){
         if(!is_array($array[$i]) || (count($array[$i]) !== count($array[0]))){
-            throw new Exception("Ошибка: входной параметр не является матрицей");
+            throw new Exception("Error: input parameter is not a matrix");
         } 
         $sum = 0;
         for($j = 0; $j < $column; $j++){
@@ -325,7 +325,7 @@ try{
 function delColMatrixByCond($array): array {    
     $result = [];
     if(!is_array($array) || !is_array($array[0])){
-        throw new Exception("Ошибка: входной параметр не является массивом/матрицей");
+        throw new Exception("Error: input parameter is not an array/matrix");
     }           
     $rowIndex = 0;
     $colIndex = 0;
@@ -335,7 +335,7 @@ function delColMatrixByCond($array): array {
         $sum = 0;
         for($i = 0; $i < $row; $i++){
             if(!is_array($array[$i]) || (count($array[$i]) !== count($array[0]))){
-                throw new Exception("Ошибка: входной параметр не является матрицей");
+                throw new Exception("Error: input parameter is not a matrix");
             } 
             $sum += $array[$i][$j];            
             if($array[$i][$j] === 0){
@@ -389,7 +389,7 @@ function arrayColRemove(array $array, $colIndex): array {
 function transposeMatrix($array): array{   
     $result = [];    
     if(!is_array($array)){
-        throw new Exception("Ошибка: входной параметр не является массивом");
+        throw new Exception("Error: input parameter is not an array");
     }
     foreach($array as $key => $subarray){
         if(!is_array($subarray)){
@@ -419,10 +419,10 @@ try{
  */
 function sumMatrix($array, $arr): array{    
     if(!is_array($arr) || !is_array($array)){
-        throw new Exception("Ошибка: входной параметр не является массивом");
+        throw new Exception("Error: input parameter is not an array");
     }        
     if(count($array) !== count($arr) && count($array[0]) !== count($arr[0])){
-        throw new Exception("Ошибка: размеры матриц не совпадают");
+        throw new Exception("Error: matrix sizes do not match");
     }  
     $result = [];      
     for($i = 0; $i < count($array); $i++){
@@ -464,7 +464,7 @@ function arrayTreeOutput($array, $level = 0){
  */
 function getTree(array $array, string $tab = '', string $result = ''): string {
     if(!is_array($array)){
-        throw new Exception("Входной параметр {$array} не является массивом");
+        throw new Exception("Input parameter {$array} is not an array");
     }
     foreach ($array as $key => $value) {
         if (is_array($value)) {
