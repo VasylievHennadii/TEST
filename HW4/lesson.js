@@ -1,3 +1,5 @@
+/*----------------------------16.12.21-----------------------------------------------------------------------------*/
+
 /*
 Data types
 
@@ -269,7 +271,7 @@ function fibonacci(limit, numbers) {
 
 console.dir(fibonacci(7));
 
-
+/*-------------------------------------------20.12.21--------------------------------------------------------- */
 
 function f(a) {
     function f2(b){
@@ -607,3 +609,137 @@ new Promise((resolve, reject) => {
 },(value) => {
     console.log("e2: " + value);
 });
+
+/*-------------------------------------------23.12.21------------------------------------------------------------- */
+
+Array.prototype.asd = function(){
+    console.log(123);
+};
+
+Array.prototype.toString = function(){
+    console.log(4444);
+    return "dfgdfg";
+};
+
+function f(){
+
+}
+
+f.prototype = Array.prototype;
+f.prototype.constructor = f;
+
+let obj = new f();
+obj.toString();
+
+console.dir(obj);
+
+/*
+
+f {
+
+    proto: Array.prototype {
+        constructor: f,
+        proto: Array.prototype {
+            constructor: Array,
+            indexOf: function(){},
+            filter: function(){},
+            toString(),
+            proto: Object {
+                constructor: Object,
+                proto: Object.prototype {
+                    constructor: Object,
+                    toString: function(){},
+
+                },
+            }
+        }
+    }
+}
+
+*/
+
+
+/*<ul>
+    <li><span class="a b">Item 1</span></li>
+    <li><span class="b a">Item 2</span></li>
+    <li>Item 3</li>
+    <li>Item 4</li>
+</ul>
+*/
+//<script>
+    let li = document.querySelector("li");
+    li.addEventListener("click", function(event){
+        console.log("li");
+    }, {
+        once: true,
+        capture: true,
+        passive: true,
+    });
+
+    let ul = document.querySelector("ul");
+    ul.addEventListener("click", function(event){
+        event.preventDefault();
+        console.log("ul");
+    });
+
+    let span = document.querySelector("li span");
+    span.addEventListener("click", function(event){
+        event.preventDefault();
+        console.log("li span 1");
+    });
+//</script>
+
+
+var els = document.querySelectorAll("li");
+let ell = [];
+for(var i = 0; i < els.length; i++){
+    els[i].addEventListener("click", (function(index){
+        return function(event){
+            event.preventDefault();
+            console.log(els[index].innerHTML);
+        };
+    })(i));
+}
+
+
+let els = document.querySelectorAll("li");
+let ell = [];
+for(let i = 0; i < els.length; i++){
+    els[i].addEventListener("click", function(event){
+            event.preventDefault();
+            console.log(els[index].innerHTML);
+        });
+}
+
+
+/*
+<ul>
+    <li><span class="a b" data-color="#ab5671" data-action="background">Item 1</span></li>
+    <li><span class="a b" data-color="#da7b32" data-action="background">Item 1</span></li>
+    <li><span class="a b" data-color="#eea761" data-action="color">Item 1</span></li>
+    <li>Item 1111</li>
+    <li>Item 1111</li>
+    <li><span class="a b" data-color="#123abc" data-action="color">Item 1</span></li>
+    <li><span class="a b" data-color="#ba4512" data-action="background">Item 1</span></li>
+</ul>
+*/
+//<script>
+    let ul = document.querySelector("ul");
+    ul.addEventListener("click", function(event){
+        if(event.target.tagName === "SPAN"){
+            event.preventDefault();
+            let action = event.target.getAttribute("data-action");
+            if(typeof window[action] === "function"){
+                window[action](event.target);
+            }
+        }
+    });
+
+    function background(element){
+        element.style.backgroundColor = element.getAttribute("data-color");
+    }
+
+    function color(element){
+        element.style.color = element.getAttribute("data-color");
+    }
+//</script>
