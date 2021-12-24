@@ -24,7 +24,7 @@ function binaryToDecimal(string $binaryString): float {
 try{
     debug(binaryToDecimal('11110101'));
 } catch (Exception $e){
-    echo 'An exception was thrown in the binaryToDecimal(): ' . $e->getMessage() . '<br>'; 
+    echo 'An exception was thrown in the binaryToDecimal(): ' . $e->getMessage(); 
 }
 
 
@@ -47,7 +47,7 @@ function decimalToBinary(int $num): string {
 try{
     debug(decimalToBinary(75));
 } catch (Exception $e){
-    echo 'An exception was thrown in the decimalToBinary(): ' . $e->getMessage() . '<br>'; 
+    echo 'An exception was thrown in the decimalToBinary(): ' . $e->getMessage(); 
 }
 
 
@@ -68,7 +68,7 @@ function getFibonacci(int $num): array {
 try{
     debug(getFibonacci(13));
 } catch (Exception $e){
-    echo 'An exception was thrown in the getFibonacci(): ' . $e->getMessage() . '<br>'; 
+    echo 'An exception was thrown in the getFibonacci(): ' . $e->getMessage(); 
 }
 
 
@@ -88,7 +88,7 @@ function numberFibonacci(int $num): int {
 try{
     debug(numberFibonacci(13));
 } catch (Exception $e){
-    echo 'An exception was thrown in the numberFibonacci(): ' . $e->getMessage() . '<br>'; 
+    echo 'An exception was thrown in the numberFibonacci(): ' . $e->getMessage(); 
 }
 
 
@@ -114,9 +114,9 @@ function exponentiation(float $base, int $exponent): float {
 }
 
 try{
-    echo exponentiation(5, -3) . '<br>';
+    echo exponentiation(5, -3);
 } catch (Exception $e){
-    echo 'An exception was thrown in the exponentiation(): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the exponentiation(): ' . $e->getMessage();        
 }   
 
 
@@ -137,9 +137,9 @@ function recursExponentiation(float $base, int $exponent): float {
 }
 
 try{
-    echo recursExponentiation(5, -3) . '<br>';
+    echo recursExponentiation(5, -3);
 } catch (Exception $e){
-    echo 'An exception was thrown in the recursExponentiation(): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the recursExponentiation(): ' . $e->getMessage();        
 }  
 
 
@@ -164,9 +164,9 @@ function isValidIP(string $stringIP): bool {
 }
 
 try{
-    echo isValidIP('250.03.156.123') . '<br>';
+    echo isValidIP('250.03.156.123');
 } catch (Exception $e){
-    echo 'An exception was thrown in the isValidIP(): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the isValidIP(): ' . $e->getMessage();        
 }  
 
 
@@ -197,9 +197,9 @@ function calculatePercentages($array, string $callback): float {
 
 $arrForSort = [1, 25, -3, 0, 17, -5, 30, -3, 8, 156, -324, 88, 111, 1, 0];
 try{
-    echo calculatePercentages($arrForSort, 'isPositive') . '<br>';
+    echo calculatePercentages($arrForSort, 'isPositive');
 } catch (Exception $e){
-    echo 'An exception was thrown in the calculatePercentag($array, $callback): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the calculatePercentag($array, $callback): ' . $e->getMessage();        
 }
 
 /**
@@ -258,9 +258,9 @@ function sortArray(array $array, string $callback): array {
 }
 
 try{
-    debug(sortArray($arrForSort, 'sortDescending')) . '<br>';
+    debug(sortArray($arrForSort, 'sortDescending'));
 } catch (Exception $e){
-    echo 'An exception was thrown in the sortArray($array, $callback, true): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the sortArray($array, $callback, true): ' . $e->getMessage();        
 }  
 
 /**
@@ -315,9 +315,9 @@ function delRowMatrixByCond($array): array {
 }
 
 try{
-    debug(delRowMatrixByCond($testMatrix)) . '<br>';
+    debug(delRowMatrixByCond($testMatrix));
 } catch (Exception $e){
-    echo 'An exception was thrown in the delRowMatrixByCond($array): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the delRowMatrixByCond($array): ' . $e->getMessage();        
 }  
 
 
@@ -353,9 +353,9 @@ function delColMatrixByCond($array): array {
 }
 
 try{
-    debug(delColMatrixByCond($testMatrix)) . '<br>';
+    debug(delColMatrixByCond($testMatrix));
 } catch (Exception $e){
-    echo 'An exception was thrown in the delColMatrixByCond($array): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the delColMatrixByCond($array): ' . $e->getMessage();        
 }  
 
 
@@ -410,9 +410,9 @@ $trans = array(
     array(5, 6, 9, 1)
 );
 try{
-    debug(transposeMatrix($trans)) . '<br>';
+    debug(transposeMatrix($trans));
 } catch (Exception $e){
-    echo 'An exception was thrown in the transposeMatrix($array): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the transposeMatrix($array): ' . $e->getMessage();        
 }  
 
 
@@ -441,9 +441,9 @@ $sumArray = array(
     array(5, 9, 8, 12)
 );
 try{
-    debug(sumMatrix($trans, $sumArray)) . '<br>';
+    debug(sumMatrix($trans, $sumArray));
 } catch (Exception $e){
-    echo 'An exception was thrown in the sumMatrix($array): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the sumMatrix($array): ' . $e->getMessage();        
 }
 
 
@@ -481,9 +481,9 @@ function getTree(array $array, string $tab = '', string $result = ''): string {
 
 $array = [[5, 5], 1, 2, 3, [1, 2, 3, [1, [11, 11, [12, 12], 11]]], 8, 13, [12, 9]];
 try{
-    debug(getTree($array)) . '<br>';
+    debug(getTree($array));
 } catch (Exception $e){
-    echo 'An exception was thrown in the getTree(): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the getTree(): ' . $e->getMessage();        
 }  
 
 /**
