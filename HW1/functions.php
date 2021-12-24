@@ -4,17 +4,17 @@
 /**
  * функция преобразования числа из двоичной в десятичную СС
  */
-function binaryToDecimal(string $str): float {
-    if(!is_string($str)){
-        throw new Exception("Error: input parameter {$str} is not a string");
+function binaryToDecimal(string $binaryString): float {
+    if(!is_string($binaryString)){
+        throw new Exception("Error: input parameter {$binaryString} is not a string");
     }
-    $len = strlen($str);
+    $len = strlen($binaryString);
     $result = 0;
     for($i = 0; $i < $len; $i++){
-        if($str[$i] === '1' || $str[$i] === '0'){
-            $result += $str[$i] * exponentiation(2, $len-$i-1);
+        if($binaryString[$i] === '1' || $binaryString[$i] === '0'){
+            $result += $binaryString[$i] * exponentiation(2, $len-$i-1);
         } else{
-            throw new Exception("Error: input parameter {$str} is not binary");
+            throw new Exception("Error: input parameter {$binaryString} is not binary");
         }
         
     }
@@ -36,9 +36,10 @@ function decimalToBinary(int $num): string {
         throw new Exception("The input parameter {$num} is not an integer decimal number");
     }
     $result = '';
-    while($num !== 0){
-        $result = ($num % 2) . $result;        
-        $num = intdiv($num, 2);        
+    $absValue = abs($num);
+    while($absValue !== 0){
+        $result = ($absValue % 2) . $result;        
+        $absValue = intdiv($absValue, 2);        
     }
     return $result;
 }
@@ -54,14 +55,14 @@ try{
  * функция получает первые N чисел Фибоначчи
  */
 function getFibonacci(int $num): array {   
-    $array = [];
+    $arrayFibonacciNumbers = [];
     if($num <= 0 || !is_int($num)){            
         throw new Exception("Error: an element of the Fibonacci series with this ordinal number = {$num} does not exist");
     }    
-    for($i = 1; $i <= $num; $i++){
-        array_push($array, numberFibonacci($i));
+    for($i = 1; $i <= $num; $i++){        
+        $arrayFibonacciNumbers[$i] = numberFibonacci($i);
     }
-    return $array;    
+    return $arrayFibonacciNumbers;    
 }
 
 try{
@@ -98,11 +99,12 @@ function exponentiation(float $base, int $exponent): float {
     if(!is_int($exponent) || !is_float($base)){
         throw new Exception("The input parameter {$base} is not a float or {$exponent} is not an integer ");
     }
-    $result = 1;    
+    $result = 1; 
+    $absExponent = abs($exponent);    
     if($exponent === 0){
         return 1;
     }
-    for($i = 0; $i < abs($exponent); $i++){        
+    for($i = 0; $i < $absExponent; $i++){        
         $result *= $base;
     }
     if($exponent < 0){
@@ -144,11 +146,11 @@ try{
 /**
  * функция проверки валидности IP-адреса для версии ipv4
  */
-function isValidIP(string $str): bool {    
-    if(!is_string($str)){
-        throw new Exception("Error: input parameter {$str} is not a string");
+function isValidIP(string $stringIP): bool {    
+    if(!is_string($stringIP)){
+        throw new Exception("Error: input parameter {$stringIP} is not a string");
     }
-    $array = explode('.', $str);
+    $array = explode('.', $stringIP);
     if(count($array) === 4){
         foreach($array as $value){
             if($value > 255 || $value < 0 || !ctype_digit($value)){
@@ -171,9 +173,9 @@ try{
 /**
  * функция проверки валидности IP-адреса для версии ipv4 с помощью регулярного выражения
  */
-function isValidIpPregMatch(string $str): bool {
+function isValidIpPregMatch(string $stringIP): bool {
     $reg = '/^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/';    
-    return (bool) preg_match($reg, $str);
+    return (bool) preg_match($reg, $stringIP);
 }
 
 
