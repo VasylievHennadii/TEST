@@ -72,19 +72,19 @@ try{
 }  
 echo '<br><br>';
 
-echo "debug(sortArray($arrForSort, 'sortAscending', true))" . '<br>';
+echo "debug(sortArray($arrForSort, 'sortAscending'))" . '<br>';
 try{
-    debug(sortArray($arrForSort, 'sortAscending', true)) . '<br>';
+    debug(sortArray($arrForSort, 'sortAscending')) . '<br>';
 } catch (Exception $e){
-    echo 'An exception was thrown in the sortArray($array, $callback, true): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the sortArray($array, $callback): ' . $e->getMessage() . '<br>';        
 }
 echo '<br>';
 
-echo "debug(sortArray($arrForSort, 'sortAscending', false))" . '<br>';
+echo "debug(sortArray($arrForSort, 'sortDescending'))" . '<br>';
 try{
-    debug(sortArray($arrForSort, 'sortAscending', false)) . '<br>';
+    debug(sortArray($arrForSort, 'sortDescending')) . '<br>';
 } catch (Exception $e){
-    echo 'An exception was thrown in the sortArray($array, $callback, true): ' . $e->getMessage() . '<br>';        
+    echo 'An exception was thrown in the sortArray($array, $callback): ' . $e->getMessage() . '<br>';        
 }
 echo '<br>';
 

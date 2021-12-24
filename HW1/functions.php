@@ -3,8 +3,6 @@
 
 /**
  * функция преобразования числа из двоичной в десятичную СС
- * @param string $str
- * @return float
  */
 function binaryToDecimal(string $str): float {
     if(!is_string($str)){
@@ -32,8 +30,6 @@ try{
 
 /**
  * функция преобразования числа из десятичной в двоичную СС
- * @param int $num
- * @return string
  */
 function decimalToBinary(int $num): string {    
     if(!is_int($num)){
@@ -56,8 +52,6 @@ try{
 
 /**
  * функция получает первые N чисел Фибоначчи
- * @param int $num
- * @return array
  */
 function getFibonacci(int $num): array {   
     $array = [];
@@ -79,8 +73,6 @@ try{
 
 /**
  * рекурсивная функция находит N-й элемент ряда Фибоначчи
- * @param int $num
- * @return int
  */
 function numberFibonacci(int $num): int {
     if(!is_int($num) || $num <= 0){
@@ -101,9 +93,6 @@ try{
 
 /**
  * функция возведения числа N в степень M
- * @param float $base
- * @param int $exponent
- * @return float
  */
 function exponentiation(float $base, int $exponent): float {   
     if(!is_int($exponent) || !is_float($base)){
@@ -130,9 +119,30 @@ try{
 
 
 /**
+ * рекурсивная функция возведения числа N в степень M
+ */
+function recursExponentiation(float $base, int $exponent): float {
+    if(!is_int($exponent) || !is_float($base)){
+        throw new Exception("Входной параметр {$base} не float или {$exponent} не integer ");
+    }
+    if ($exponent === 0) {
+        return 1;
+    }
+    if ($exponent < 0) {
+        return recursExponentiation(1/$base, -$exponent);
+    }
+    return $base * recursExponentiation($base, $exponent-1);
+}
+
+try{
+    echo recursExponentiation(5, -3) . '<br>';
+} catch (Exception $e){
+    echo 'An exception was thrown in the recursExponentiation(): ' . $e->getMessage() . '<br>';        
+}  
+
+
+/**
  * функция проверки валидности IP-адреса для версии ipv4
- * @param string $str
- * @return bool
  */
 function isValidIP(string $str): bool {    
     if(!is_string($str)){
@@ -160,19 +170,15 @@ try{
 
 /**
  * функция проверки валидности IP-адреса для версии ipv4 с помощью регулярного выражения
- * @param string $str
- * @return bool
  */
 function isValidIpPregMatch(string $str): bool {
     $reg = '/^(([01]?\\d\\d?|2[0-4]\\d|25[0-5])\\.){3}([01]?\\d\\d?|2[0-4]\\d|25[0-5])$/';    
     return (bool) preg_match($reg, $str);
 }
 
+
 /**
  * функция подсчитывает процентное соотношение чисел в массиве по заданным параметрам
- * @param array $array
- * @param string $callback
- * @return float
  */
 function calculatePercentages($array, string $callback): float {    
     if(!is_array($array)){
@@ -192,13 +198,10 @@ try{
     echo calculatePercentages($arrForSort, 'isPositive') . '<br>';
 } catch (Exception $e){
     echo 'An exception was thrown in the calculatePercentag($array, $callback): ' . $e->getMessage() . '<br>';        
-}  
-
+}
 
 /**
  * функция проверки входного параметра на простое число
- * @param int $num
- * @return bool
  */
 function isPrime(int $num): bool {
     $max = sqrt($num);
@@ -212,8 +215,6 @@ function isPrime(int $num): bool {
 
 /**
  * функция проверки входного параметра на положительное число
- * @param float $num
- * @return bool
  */
 function isPositive(float $num): bool {
     return $num > 0;
@@ -221,8 +222,6 @@ function isPositive(float $num): bool {
 
 /**
  * функция проверки входного параметра на отрицательное число
- * @param float $num
- * @return bool
  */
 function isNegative(float $num): bool {
     return $num < 0;
@@ -230,53 +229,50 @@ function isNegative(float $num): bool {
 
 /**
  * функция проверки входного параметра на ноль
- * @param int $num
- * @return bool
  */
 function isZero(int $num): bool {
     return $num === 0;
 }
 
+
 /**
- * сортировка массива по возрастанию/убыванию $flag = true/false
- * @param array $array
- * @param string $callback
- * @param bool $flag
- * @return array
+ * сортировка массива по возрастанию/убыванию
  */
-function sortArray($array, string $callback, bool $flag = true): array {    
+function sortArray(array $array, string $callback): array {    
     if(!is_array($array)){
         throw new Exception("Ошибка: входной параметр {$array} не является массивом");
     }
     $length = count($array);
     for($i = 0; $i < $length-1; $i++){
         for($j = 0; $j < $length-1-$i; $j++){ 
-            $array = $callback($array, $j, $flag);
+            if($callback($array[$j], $array[$j + 1])){
+                $temp = $array[$j + 1];
+                $array[$j + 1] = $array[$j];
+                $array[$j] = $temp;
+            }
         }
     }    
     return $array;
 }
 
 try{
-    debug(sortArray($arrForSort, 'sortAscending', true)) . '<br>';
+    debug(sortArray($arrForSort, 'sortDescending')) . '<br>';
 } catch (Exception $e){
     echo 'An exception was thrown in the sortArray($array, $callback, true): ' . $e->getMessage() . '<br>';        
 }  
 
-
 /**
  * callback функция для перестановки элементов массива по возрастанию
- * @param array $array
- * @param int $num
- * @return array
  */
-function sortAscending(array $array, int $num, bool $flag): array{
-    if(($array[$num + 1] < $array[$num] && $flag) || ($array[$num + 1] > $array[$num] && !$flag)){
-        $temp = $array[$num + 1];
-        $array[$num + 1] = $array[$num];
-        $array[$num] = $temp;
-    }
-    return $array;    
+function sortAscending($arrayValue, $nextArrayValue): bool{    
+    return $nextArrayValue < $arrayValue;    
+}
+
+/**
+ * callback функция для перестановки элементов массива по убыванию
+ */
+function sortDescending($arrayValue, $nextArrayValue): bool{    
+    return $nextArrayValue > $arrayValue;    
 }
 
 $testMatrix = array(
@@ -287,8 +283,6 @@ $testMatrix = array(
 
 /**
  * функция удаляет строки матрицы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент.
- * @param array $array 
- * @return array
  */
 function delRowMatrixByCond($array): array {    
     $result = [];
@@ -327,8 +321,6 @@ try{
 
 /**
  * функция удаляет столбцы матрицы, в которых сумма элементов положительна и присутствует хотя бы один нулевой элемент.
- * @param array $array
- * @return array
  */
 function delColMatrixByCond($array): array {    
     $result = [];
@@ -367,9 +359,6 @@ try{
 
 /**
  * функция удаления строки матрицы
- * @param array $array
- * @param mixed $rowIndex
- * @return array
  */
 function arrayRowRemove(array $array, $rowIndex): array {
     if (is_array($array) && array_key_exists($rowIndex, $array)){
@@ -381,9 +370,6 @@ function arrayRowRemove(array $array, $rowIndex): array {
 
 /**
  * функция удаления столбца матрицы
- * @param array $array
- * @param mixed $colIndex
- * @return array
  */
 function arrayColRemove(array $array, $colIndex): array {
     if (is_array($array) && count($array)){
@@ -399,8 +385,6 @@ function arrayColRemove(array $array, $colIndex): array {
 
 /**
  * функция транспонирования матрицы
- * @param mixed $array
- * @return array
  */
 function transposeMatrix($array): array{   
     $result = [];    
@@ -432,9 +416,6 @@ try{
 
 /**
  * функция сложения двух матриц
- * @param array $array
- * @param array $arr
- * @return array
  */
 function sumMatrix($array, $arr): array{    
     if(!is_array($arr) || !is_array($array)){
@@ -461,39 +442,11 @@ try{
     debug(sumMatrix($trans, $sumArray)) . '<br>';
 } catch (Exception $e){
     echo 'An exception was thrown in the sumMatrix($array): ' . $e->getMessage() . '<br>';        
-}  
-
-
-/**
- * рекурсивная функция возведения числа N в степень M
- * @param float $base
- * @param int $exponent
- * @return float
- */
-function recursExponentiation(float $base, int $exponent): float {
-    if(!is_int($exponent) || !is_float($base)){
-        throw new Exception("Входной параметр {$base} не float или {$exponent} не integer ");
-    }
-    if ($exponent === 0) {
-        return 1;
-    }
-    if ($exponent < 0) {
-        return recursExponentiation(1/$base, -$exponent);
-    }
-    return $base * recursExponentiation($base, $exponent-1);
 }
 
-try{
-    echo recursExponentiation(5, -3) . '<br>';
-} catch (Exception $e){
-    echo 'An exception was thrown in the recursExponentiation(): ' . $e->getMessage() . '<br>';        
-}  
 
 /**
  * рекурсивная функция которая обходит и выводит все значения любого массива и любого уровня вложенности
- * @param mixed $array
- * @param int $level
- * @return mixed
  */
 function arrayTreeOutput($array, $level = 0){    
     if (!is_array($array)) {        
@@ -508,10 +461,6 @@ function arrayTreeOutput($array, $level = 0){
 
 /**
  * рекурсивная функция которая обходит и получает все значения любого массива и любого уровня вложенности
- * @param array $array
- * @param string $tab
- * @param string $result
- * @return string
  */
 function getTree(array $array, string $tab = '', string $result = ''): string {
     if(!is_array($array)){
@@ -537,9 +486,6 @@ try{
 
 /**
  * функция удобного вывода массива
- * @param mixed $data
- * @param bool $die
- * @return void
  */
 function debug($data, $die = false){
     echo "<pre>" . print_r($data, true) . "</pre>";
