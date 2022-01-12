@@ -4,8 +4,11 @@ use figures\Circle;
 use figures\Rectangle;
 use figures\Triangle;
 
-spl_autoload_register(function ($class_name) {
-    include $class_name . '.php';
+spl_autoload_register(function ($className) {
+    $path = str_replace('\\', '/', $className . '.php');
+    if(file_exists($path)){
+        require $path;
+    }
 });
 
 $rectangle = new Rectangle(4, 3);

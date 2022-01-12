@@ -8,8 +8,15 @@ class UserController {
 
     }
 
-    public function index(){
-        echo "index";
+    public function index(){ 
+        $query = $_SERVER['DOCUMENT_ROOT'];       
+        $query1 = $_SERVER["REQUEST_URI"];       
+        $query2 = $_SERVER["REQUEST_METHOD"];       
+        echo "$query" . '<br>';
+        echo "$query1" . '<br>';
+        echo "$query2" . '<br>';
+        echo __DIR__;
+        echo __FILE__;
     }
 
     public function getAll(){

@@ -17,7 +17,6 @@ class Triangle extends Figure {
         $this->sideA = $sideA;
         $this->sideB = $sideB;
         $this->sideC = $sideC;
-
     }
 
     public function calculatePerimeter() {
