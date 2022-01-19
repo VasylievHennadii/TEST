@@ -6,8 +6,8 @@ use Exception;
 
 class Rectangle extends Figure {
 
-    public $width;
-    public $height;
+    private $width;
+    private $height;
 
 
     public function __construct($width, $height) {

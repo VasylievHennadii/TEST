@@ -6,7 +6,7 @@ use Exception;
 
 class Circle extends Figure {
 
-    public $radius;
+    private $radius;
 
     const PI = 3.1416;
 

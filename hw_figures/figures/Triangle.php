@@ -6,9 +6,9 @@ use Exception;
 
 class Triangle extends Figure {
 
-    public $sideA;
-    public $sideB;
-    public $sideC;
+    private $sideA;
+    private $sideB;
+    private $sideC;
 
     public function __construct($sideA, $sideB, $sideC) {
         if($sideA <= 0 || $sideB <= 0 || $sideC <= 0){
