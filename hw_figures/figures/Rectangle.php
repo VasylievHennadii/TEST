@@ -2,8 +2,6 @@
 
 namespace figures;
 
-use Exception;
-
 class Rectangle extends Figure {
 
     private $width;
@@ -12,7 +10,7 @@ class Rectangle extends Figure {
 
     public function __construct($width, $height) {
         if($width <= 0 || $height <= 0){
-            throw new Exception('The input parameter $width or $height is less than or equal to 0');
+            throw new \Exception('The input parameter $width or $height is less than or equal to 0');
         }
         $this->width = $width;
         $this->height = $height;

@@ -2,8 +2,6 @@
 
 namespace figures;
 
-use Exception;
-
 class Triangle extends Figure {
 
     private $sideA;
@@ -12,7 +10,7 @@ class Triangle extends Figure {
 
     public function __construct($sideA, $sideB, $sideC) {
         if($sideA <= 0 || $sideB <= 0 || $sideC <= 0){
-            throw new Exception('The input parameter - side of a triangle, is less than or equal to 0');
+            throw new \Exception('The input parameter - side of a triangle, is less than or equal to 0');
         }
         $this->sideA = $sideA;
         $this->sideB = $sideB;

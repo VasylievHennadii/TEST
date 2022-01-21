@@ -2,8 +2,6 @@
 
 namespace figures;
 
-use Exception;
-
 class Circle extends Figure {
 
     private $radius;
@@ -12,7 +10,7 @@ class Circle extends Figure {
 
     public function __construct($radius) {
         if($radius <= 0){
-            throw new Exception('The input parameter $radius is less than or equal to 0');
+            throw new \Exception('The input parameter $radius is less than or equal to 0');
         }
         $this->radius = $radius;
     }
