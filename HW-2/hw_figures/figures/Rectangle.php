@@ -16,11 +16,11 @@ class Rectangle extends Figure {
         $this->height = $height;
     }
 
-    public function calculatePerimeter() {
+    public function perimeter() {
         return ($this->width + $this->height) * 2;        
     }
 
-    public function calculateSquare() {
+    public function square() {
         return $this->width * $this->height;
     }
 

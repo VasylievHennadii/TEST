@@ -16,11 +16,11 @@ $triangle = new Triangle(4, 4, 3);
 $circle = new Circle(5);
 
 
-echo $rectangle->calculatePerimeter() . '<br>';
-echo $rectangle->calculateSquare() . '<br>';
+echo $rectangle->perimeter() . '<br>';
+echo $rectangle->square() . '<br>';
 
-echo $triangle->calculatePerimeter() . '<br>';
-echo $triangle->calculateSquare() . '<br>';
+echo $triangle->perimeter() . '<br>';
+echo $triangle->square() . '<br>';
 
-echo $circle->calculatePerimeter() . '<br>';
-echo $circle->calculateSquare() . '<br>';
+echo $circle->perimeter() . '<br>';
+echo $circle->square() . '<br>';

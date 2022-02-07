@@ -17,12 +17,12 @@ class Triangle extends Figure {
         $this->sideC = $sideC;
     }
 
-    public function calculatePerimeter() {
+    public function perimeter() {
         return $this->sideA + $this->sideB + $this->sideC;        
     }
 
-    public function calculateSquare() {
-        $halfPerimeter = $this->calculatePerimeter() / 2;
+    public function square() {
+        $halfPerimeter = $this->perimeter() / 2;
         return sqrt($halfPerimeter * ($halfPerimeter - $this->sideA) * ($halfPerimeter - $this->sideB) * ($halfPerimeter - $this->sideC));
     }
 

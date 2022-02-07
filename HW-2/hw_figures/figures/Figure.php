@@ -8,8 +8,8 @@ abstract class Figure {
         
     }
 
-    abstract function calculatePerimeter();
+    abstract function perimeter();
 
-    abstract function calculateSquare();
+    abstract function square();
 
 }

@@ -15,11 +15,11 @@ class Circle extends Figure {
         $this->radius = $radius;
     }
 
-    public function calculatePerimeter() {
+    public function perimeter() {
         return self::PI * ($this->radius * 2);
     }
 
-    public function calculateSquare() {
+    public function square() {
         return self::PI * pow($this->radius, 2);
     }
 
