@@ -1,7 +1,5 @@
 <?php
 
-define('BASE_DIR', __DIR__);
-
 class Logger {
     private $path = __DIR__ . '/log/';
     private $type = 'date';
