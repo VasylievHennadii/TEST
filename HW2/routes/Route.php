@@ -46,7 +46,6 @@ class Route {
                 }
             }
         }
-
         return false;
     }
 }

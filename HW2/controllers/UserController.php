@@ -12,11 +12,11 @@ class UserController {
         $query = $_SERVER['DOCUMENT_ROOT'];       
         $query1 = $_SERVER["REQUEST_URI"];       
         $query2 = $_SERVER["REQUEST_METHOD"];       
-        echo "$query" . '<br>';
-        echo "$query1" . '<br>';
-        echo "$query2" . '<br>';
-        echo __DIR__;
-        echo __FILE__;
+        echo "'DOCUMENT_ROOT' : $query" . '<br>';
+        echo "'REQUEST_URI' : $query1" . '<br>';
+        echo "'REQUEST_METHOD' : $query2" . '<br>';
+        echo '__DIR__ : ' . __DIR__ . '<br>';
+        echo '__FILE__ : ' . __FILE__;
     }
 
     public function getAll(){

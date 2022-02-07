@@ -14,7 +14,6 @@ class ClassLoader {
         if(self::$instance === null){
             self::$instance = new self();
         }
-
         return self::$instance;
     }
 
@@ -23,7 +22,7 @@ class ClassLoader {
     }
 
     public function loader($className){
-        $path = str_replace("\\", "/", trim($className, "\s\t\r\n\\/")) . ".php";
+        $path = str_replace("\\", "/", trim($className, "\t\r\n\\/")) . ".php";
 
         if(!file_exists($path)){
             throw new \Exception("File with name: " . $path . " not found");
@@ -32,11 +31,9 @@ class ClassLoader {
         require_once($path);
     }
 
-    private function __sleep()
-    {
+    private function __sleep(){
     }
 
-    private function __wakeup()
-    {
+    private function __wakeup(){
     }
 }
